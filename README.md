@@ -64,12 +64,12 @@
 
 ### Time Estimates
 
-- Name of feature:
+- Name of feature: Initial Setup
 
-- Estimate of time needed to complete: _____
+- Estimate of time needed to complete: 60 minutes
 
-- Start time: _____
+- Start time: 1:30pm
 
-- Finish time: _____
+- Finish time: 2:30pm
 
-- Actual time needed to complete: _____
+- Actual time needed to complete: 60 minutes
