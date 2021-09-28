@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 class BestBooks extends React.Component {
@@ -5,6 +6,16 @@ class BestBooks extends React.Component {
     super(props);
     this.state = {
       books: []
+    }
+  }
+  async componentDidMount() {
+    try {
+      const bookUrl = await axios.get('https://localhost:27017/books');
+      this.setState
+
+
+    } catch (error) {
+      console.error(error)
     }
   }
 
