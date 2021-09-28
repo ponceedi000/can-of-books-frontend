@@ -12,42 +12,39 @@ class BestBooks extends React.Component {
     }
   }
   async componentDidMount() {
-    try {
-      const bookUrl = await axios.get('https://localhost:27017/books');
-      this.setState
+    this.fetchBooks('foomail@gmail.com');
 
+  }
+
+  async fetchBooks(email) {
+    let booksURL = 'http://localhost:3001/books';
+
+    if (email) {
+      booksURL += `?email=${email}`;
+    }
+
+    try {
+      const response = await axios.get(booksURL);
+      console.log(response.data)
+      this.setState({
+        books: response.data,
+        displayBooks: true
+      })
 
     } catch (error) {
-      console.error(error)
+      console.log(error);
     }
   }
 
-async fetchBooks(email = null) {
-  let booksURL = 'http://localhost:3001/books';
+  handleEmailSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    console.log({ email });
+    this.fetchBooks(email);
 
-  if(email) {
-    booksURL += `?email=${email}`;
   }
 
-  try {
-    const response = await axios.get(booksURL);
-    this.setState({ books: response.data})
-  
-  } catch (error) {
-    console.log(error);
-  }
-  console.log(this.state.books);
-}
-
-handleEmailSubmit = (event) => {
-  event.preventDefault();
-  const email = event.target.email.value;
-  console.log({ email });
-  this.fetchBooks(email);
-  
-}
-
-//WIP - commented out code is stuff that doesn't work yet, but we'll figure it out eventually.
+  //WIP - commented out code is stuff that doesn't work yet, but we'll figure it out eventually.
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
 
@@ -55,22 +52,28 @@ handleEmailSubmit = (event) => {
     /* TODO: render user's books in a Carousel */
 
     return (
-
-        <Carousel>
-          {/* {this.state.displayBooks ( */}
-          <Carousel.Item>
+      <>
+      {this.state.books.length > 0 ? 
+      <Carousel>
+        {this.state.books.map((book, index) => (
+          <Carousel.Item key={index}>
             <img
               className="d-block w-100"
-              src="holder.js/800x400?text=First slide&bg=373940"
-              alt="First slide"
+              src="https://via.placeholder.com/150"
+              alt={book.title}
             />
             <Carousel.Caption>
-              <h3>{this.state.books.title}</h3> {/*this doesn't work yet*/}
-              <p>{this.state.books.description}</p> {/*this doesn't work yet*/}
+              <h3>{book.title}</h3> {/*this doesn't work yet*/}
+              <p>{book.description}</p> {/*this doesn't work yet*/}
             </Carousel.Caption>
           </Carousel.Item>
-          {/* )} */}
-        </Carousel>
+
+        ))}
+
+
+      </Carousel>
+      : <p>Sorry, no books available.</p>}
+      </>
     )
   }
 }
