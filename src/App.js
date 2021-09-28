@@ -8,6 +8,7 @@ import {
   Route
 } from "react-router-dom";
 import BestBooks from './BestBooks';
+import Profile from './Profile'
 
 class App extends React.Component {
 
@@ -40,7 +41,11 @@ class App extends React.Component {
               <BestBooks />
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-          </Switch>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+            </Switch>
           <Footer />
         </Router>
       </>
