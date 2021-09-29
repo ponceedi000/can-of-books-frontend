@@ -12,7 +12,7 @@ class BestBooks extends React.Component {
     }
   }
   async componentDidMount() {
-    this.fetchBooks('foomail@gmail.com');
+    this.fetchBooks('brynthepigeon@gmail.com');
 
   }
 
@@ -50,7 +50,7 @@ class BestBooks extends React.Component {
 
   render() {
     /* TODO: render user's books in a Carousel */
-
+    console.log('NEW BOOK',this.props.newBook)
     return (
       <>
       {this.state.books.length > 0 ? 
