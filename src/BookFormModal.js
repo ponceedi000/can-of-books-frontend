@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, Button, Col, Row, Container } from 'react-bootstrap';
-import reactDom from 'react-dom';
+import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
 
