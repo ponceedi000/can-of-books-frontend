@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -8,6 +9,8 @@ import {
   Route
 } from "react-router-dom";
 import BestBooks from './BestBooks';
+import Profile from './Profile'
+import BookFormModal from './BookFormModal';
 
 class App extends React.Component {
 
@@ -15,6 +18,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
+      showModal: false,
+      newBook: null
+
     }
   }
 
@@ -30,6 +36,25 @@ class App extends React.Component {
     })
   }
 
+  handleShow = (event) => {
+    this.setState({
+      showModal: true,
+    })
+  }
+  handleClose = (event) => {
+    this.setState({
+      showModal: false,
+    })
+  }
+
+  handleCreate = async (bookInfo) => {
+    const newBookResponse = await axios.post('http://localhost:3001/books', bookInfo);
+    // this.props.fetchBooks();// DANGER: losing location
+    this.setState({
+      newBook: newBookResponse.data
+    })
+  };
+
   render() {
     return (
       <>
@@ -37,9 +62,17 @@ class App extends React.Component {
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              <BestBooks />
+              <BestBooks newBook={this.state.newBook} />
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/create">
+              <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
+
+            </Route>
+
           </Switch>
           <Footer />
         </Router>
