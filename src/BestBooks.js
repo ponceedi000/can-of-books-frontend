@@ -17,8 +17,8 @@ class BestBooks extends React.Component {
   }
 
   async fetchBooks(email) {
-    let booksURL = 'http://localhost:3001/books';
-
+    // let booksURL = 'http://localhost:3001/books';
+    let booksURL = 'https://kroffe-can-of-books.herokuapp.com/books'
     if (email) {
       booksURL += `?email=${email}`;
     }
