@@ -70,7 +70,6 @@ class App extends React.Component {
             </Route>
             <Route path="/create">
               <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
-
             </Route>
 
           </Switch>
