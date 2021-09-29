@@ -64,7 +64,7 @@
 
 ### Time Estimates
 
-- Name of feature: Initial Setup
+#### Name of feature: Initial Setup
 
 - Estimate of time needed to complete: 60 minutes
 
@@ -73,3 +73,13 @@
 - Finish time: 2:30pm
 
 - Actual time needed to complete: 60 minutes
+
+#### Name of feature: Create New Book Form
+
+- Estimate of time needed to complete: 5 hours
+
+- Start time: 1:30pm
+
+- Finish time: 10:20pm
+
+- Actual time needed to complete: 9 hours
