@@ -56,9 +56,11 @@ class App extends React.Component {
     })
   };
 
-  handleDelete = async (id) => {
-    const deleteBookResponse = await axios.delete(`http://localhost:3001/books/${id}`);
-    this.getBooks();// DANGER: losing location
+
+  handleDelete = async (id, email) => {
+    const deleteBookResponse = await axios.delete(`http://localhost:3001/books/${id}?email=${email}`);
+
+    // this.getBooks();// DANGER: losing location
     this.setState({
       deleteBook: deleteBookResponse.data
     })
