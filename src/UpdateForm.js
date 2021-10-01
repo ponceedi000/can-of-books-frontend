@@ -1,8 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
-class BookFormModal extends React.Component {
+class UpdateForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,27 +15,22 @@ class BookFormModal extends React.Component {
     }
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(this.state)
-
-    this.props.onCreate({
-      title: this.state.title,
-      description: this.state.description,
-      status: this.state.status,
-      email: this.state.email,
-    })
-  }
+  handleUpdate = async (id, email) => {
+    await axios.put(`http://localhost:3001/books/${id}?email=${email}`);
+    this.props.getbooks();
+  };
 
   render() {
+    // we need: onChange, onClick,
     return (
+
       <>
-        <Button onClick={this.props.handleShow}>
-          Add a Book
+        <Button variant="info" onClick={this.props.handleShow}>
+          Update Book
         </Button>
         <Modal show={this.props.showModal}>
           <Modal.Header>
-            <Modal.Title>Add a Book</Modal.Title>
+            <Modal.Title>Update a Book</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
@@ -64,15 +60,16 @@ class BookFormModal extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleSubmit} variant="primary" type="submit" value="sumbit">Submit
+            <Button onClick={this.handleUpdate} variant="primary" type="submit" value="sumbit">Update
             </Button>
             <Button onClick={this.props.handleClose} variant="secondary">Close
             </Button>
           </Modal.Footer>
         </Modal>
       </>
+
     )
   }
 }
 
-export default BookFormModal;
+export default UpdateForm;

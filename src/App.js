@@ -11,6 +11,8 @@ import {
 import BestBooks from './BestBooks';
 import Profile from './Profile'
 import BookFormModal from './BookFormModal';
+import UpdateForm from './UpdateForm';
+import Login from './Login'
 
 class App extends React.Component {
 
@@ -20,7 +22,8 @@ class App extends React.Component {
       user: null,
       showModal: false,
       newBook: null,
-      deleteBook: null
+      deleteBook: null,
+      filteredBooks: []
 
     }
   }
@@ -50,30 +53,20 @@ class App extends React.Component {
 
   handleCreate = async (bookInfo) => {
     const newBookResponse = await axios.post('http://localhost:3001/books', bookInfo);
-    // this.props.fetchBooks();// DANGER: losing location
+
     this.setState({
       newBook: newBookResponse.data
     })
   };
 
-  handleDelete = async (id) => {
-    const deleteBookResponse = await axios.delete(`http://localhost:3001/books/${id}`);
-    this.getBooks();// DANGER: losing location
+  handleUpdate = async (id, email) => {
+    const newBookResponse = await axios.post(`http://localhost:3001/books${id}${email}`);
+
     this.setState({
-      deleteBook: deleteBookResponse.data
+      newBook: newBookResponse.data
     })
   };
 
-  // need to create a function that goes through the array, filters out the object by id
-  // set state of the book array? this will allow the webpage to render realtime w/o refreshing
-
-  getbooks = async () => {
-    const booksURL = 'http://localhost:3001/books';
-    let booksResponse = await axios.get(booksURL);
-    let bookData = booksResponse.data;
-    this.setState({ books: bookData});
-    console.log('bookData' + booksResponse.data[0].title)
-  }
 
   render() {
     return (
@@ -82,7 +75,7 @@ class App extends React.Component {
           <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
-              <BestBooks newBook={this.state.newBook} deleteBooks={this.state.deleteBook} handleDelete={this.handleDelete}/>
+              <BestBooks newBook={this.state.newBook} />
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             <Route path="/profile">
@@ -91,7 +84,12 @@ class App extends React.Component {
             <Route path="/create">
               <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
             </Route>
-
+            <Route path="/update">
+              <UpdateForm handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onUpdate={this.handleCreate} />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
           </Switch>
           <Footer />
         </Router>
