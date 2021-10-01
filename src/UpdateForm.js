@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
 
-class BookFormModal extends React.Component {
+class UpdateForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -33,8 +33,8 @@ class BookFormModal extends React.Component {
     return (
 
       <>
-        <Button onClick={this.props.handleShow}>
-          Add a Book
+        <Button variant="info" onClick={this.props.handleShow}>
+          Update Book
         </Button>
 
         <Modal show={this.props.showModal}>
@@ -81,4 +81,4 @@ class BookFormModal extends React.Component {
   }
 }
 
-export default BookFormModal;
+export default UpdateForm;

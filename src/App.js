@@ -11,6 +11,7 @@ import {
 import BestBooks from './BestBooks';
 import Profile from './Profile'
 import BookFormModal from './BookFormModal';
+import UpdateForm from './UpdateForm';
 
 class App extends React.Component {
 
@@ -78,6 +79,9 @@ class App extends React.Component {
             </Route>
             <Route path="/create">
               <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
+            </Route>
+            <Route path="/update">
+              <UpdateForm handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
             </Route>
 
           </Switch>
