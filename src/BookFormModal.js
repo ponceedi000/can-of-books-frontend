@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
-
 class BookFormModal extends React.Component {
 
   constructor(props) {
@@ -27,16 +26,12 @@ class BookFormModal extends React.Component {
     })
   }
 
-
   render() {
-    // we need: onChange, onClick,
     return (
-
       <>
         <Button onClick={this.props.handleShow}>
           Add a Book
         </Button>
-
         <Modal show={this.props.showModal}>
           <Modal.Header>
             <Modal.Title>Add a Book</Modal.Title>
@@ -76,7 +71,6 @@ class BookFormModal extends React.Component {
           </Modal.Footer>
         </Modal>
       </>
-
     )
   }
 }

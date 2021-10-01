@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
-
 class UpdateForm extends React.Component {
 
   constructor(props) {
@@ -21,7 +20,6 @@ class UpdateForm extends React.Component {
     this.props.getbooks();
   };
 
-
   render() {
     // we need: onChange, onClick,
     return (
@@ -30,7 +28,6 @@ class UpdateForm extends React.Component {
         <Button variant="info" onClick={this.props.handleShow}>
           Update Book
         </Button>
-
         <Modal show={this.props.showModal}>
           <Modal.Header>
             <Modal.Title>Update a Book</Modal.Title>

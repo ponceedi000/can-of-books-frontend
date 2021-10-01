@@ -9,30 +9,18 @@ class BestBooks extends React.Component {
     super(props);
     this.state = {
       books: [],
-      // displayBooks: false,
     }
   }
-
-  /* TODO: Make a GET request to your API to fetch books for the logged in user  */
 
   async componentDidMount() {
     const booksURL = process.env.REACT_APP_API_URL + '/books'; // localhost
     //let booksURL = 'https://kroffe-can-of-books.herokuapp.com/books' //heroku
     console.log(booksURL, 'url here?');
-
-    // const bookResponse = await axios.get(booksURL);
-    // this.setState({ books: bookResponse.data });
     this.getbooks();
   }
 
 
   handleDelete = async (id, email) => {
-
-    // let newBooks = this.state.books;
-    // const superNewBooks = newBooks.filter(book => book._id !== id)
-    // this.setState({
-    //   books: superNewBooks
-    // })
     await axios.delete(`http://localhost:3001/books/${id}?email=${email}`);
     this.getbooks();
   };
@@ -44,9 +32,7 @@ class BestBooks extends React.Component {
     console.log('bookData' + booksResponse.data[0].title)
   }
 
-
   render() {
-    /* TODO: render user's books in a Carousel */
     console.log('NEW BOOK', this.props.newBook)
     console.log(this.state.books)
     return (
@@ -68,8 +54,6 @@ class BestBooks extends React.Component {
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
-
-
           </Carousel>
           : <p>Sorry, no books available.</p>
         }

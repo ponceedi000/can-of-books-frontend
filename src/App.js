@@ -68,11 +68,6 @@ class App extends React.Component {
   };
 
 
-  // need to create a function that goes through the array, filters out the object by id
-  // set state of the book array? this will allow the webpage to render realtime w/o refreshing
-
-
-
   render() {
     return (
       <>

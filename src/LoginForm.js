@@ -13,7 +13,6 @@ class LoginForm extends Component {
     this.props.loginHandler(bookUser);
   }
 
-  
   render() {
     /* TODO: create a simple login form that collects username and and email, and lets parent component know when form has been submitted */
     return (
@@ -30,8 +29,6 @@ class LoginForm extends Component {
             We'll always share your email with anyone who asks nicely.
           </Form.Text>
         </Form.Group>
-
-
         <Button variant="primary" type="submit">
           Submit
         </Button>
