@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 
@@ -15,17 +16,10 @@ class UpdateForm extends React.Component {
     }
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(this.state)
-
-    this.props.onCreate({
-      title: this.state.title,
-      description: this.state.description,
-      status: this.state.status,
-      email: this.state.email,
-    })
-  }
+  handleUpdate = async (id, email) => {
+    await axios.put(`http://localhost:3001/books/${id}?email=${email}`);
+    this.props.getbooks();
+  };
 
 
   render() {
@@ -39,7 +33,7 @@ class UpdateForm extends React.Component {
 
         <Modal show={this.props.showModal}>
           <Modal.Header>
-            <Modal.Title>Add a Book</Modal.Title>
+            <Modal.Title>Update a Book</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.handleSubmit}>
@@ -69,7 +63,7 @@ class UpdateForm extends React.Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleSubmit} variant="primary" type="submit" value="sumbit">Submit
+            <Button onClick={this.handleUpdate} variant="primary" type="submit" value="sumbit">Update
             </Button>
             <Button onClick={this.props.handleClose} variant="secondary">Close
             </Button>

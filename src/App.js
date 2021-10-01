@@ -12,6 +12,7 @@ import BestBooks from './BestBooks';
 import Profile from './Profile'
 import BookFormModal from './BookFormModal';
 import UpdateForm from './UpdateForm';
+import Login from './Login'
 
 class App extends React.Component {
 
@@ -58,6 +59,14 @@ class App extends React.Component {
     })
   };
 
+  handleUpdate = async (id, email) => {
+    const newBookResponse = await axios.post(`http://localhost:3001/books${id}${email}`);
+
+    this.setState({
+      newBook: newBookResponse.data
+    })
+  };
+
 
   // need to create a function that goes through the array, filters out the object by id
   // set state of the book array? this will allow the webpage to render realtime w/o refreshing
@@ -81,9 +90,11 @@ class App extends React.Component {
               <BookFormModal handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
             </Route>
             <Route path="/update">
-              <UpdateForm handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onCreate={this.handleCreate} />
+              <UpdateForm handleClose={this.handleClose} handleShow={this.handleShow} showModal={this.state.showModal} onUpdate={this.handleCreate} />
             </Route>
-
+            <Route path="/login">
+              <Login />
+            </Route>
           </Switch>
           <Footer />
         </Router>

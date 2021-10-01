@@ -12,7 +12,7 @@ class Header extends React.Component {
         <NavItem><Link to="/create" className="nav-link">Add Book</Link></NavItem>
         <NavItem><Link to="/update" className="nav-link">Update Book</Link></NavItem>
         <NavItem><Link to="/profile" className="nav-link">My Profile</Link></NavItem>
-        
+        <NavItem><Link to="/login" className="nav-link">Login</Link></NavItem>
         {/* TODO: if the user is logged in, render the `LogoutButton` */}
       </Navbar>
     )
